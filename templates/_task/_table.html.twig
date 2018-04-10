@@ -1,0 +1,33 @@
+<table class="ui selectable table">
+    <thead>
+    <tr>
+        <th>Título</th>
+        <th>Asignatura</th>
+        <th class="collapsing">Fecha entrega</th>
+        <th class="collapsing">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for task in tasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>{{ task.subject }}</td>
+            <td>{{ task.deadlineAt ? task.deadlineAt|date('Y-m-d') : '' }}</td>
+            <td>
+                <div class="ui buttons">
+                    {% if is_granted('CHECK', task) %}
+                        <a class="ui icon button" href="{{ path('task_check', {'id': task.id}) }}"><i class="check icon"></i></a>
+                    {% else %}
+                        <a class="ui green icon button"><i class="check icon"></i></a>
+                    {% endif %}
+                    <a class="ui icon button" href="{{ path('task_show', {'id': task.id}) }}"><i class="eye icon"></i></a>
+                </div>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="3">No hay tareas</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

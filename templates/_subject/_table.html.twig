@@ -1,0 +1,36 @@
+<table class="ui selectable table">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Curso</th>
+        <th class="collapsing">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for subject in subjects %}
+        <tr>
+            <td>
+                {{ subject.name }}
+                {% if is_granted('UNENROLL', subject) %}
+                    <div class="ui green horizontal label">Matriculado</div>
+                {% endif %}
+            </td>
+            <td>{{ subject.year }}</td>
+            <td>
+                <div class="ui buttons">
+                    {% if is_granted('ENROLL', subject) %}
+                        <a class="ui icon button" href="{{ path('subject_enroll', {'id': subject.id}) }}"><i class="plus icon"></i></a>
+                    {% elseif is_granted('UNENROLL', subject) %}
+                        <a class="ui icon button" href="{{ path('subject_unenroll', {'id': subject.id}) }}"><i class="minus icon"></i></a>
+                    {% endif %}
+                    <a class="ui icon button" href="{{ path('subject_show', {'id': subject.id}) }}"><i class="eye icon"></i></a>
+                </div>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="3">No se han encontrado</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

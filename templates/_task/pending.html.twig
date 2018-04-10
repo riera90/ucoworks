@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de tareas pendientes{% endblock %}
+
+{% block body %}
+    <h1 class="ui header">
+        Lista de tareas pendientes
+    </h1>
+
+    {% include "task/_table.html.twig" %}
+
+{% endblock %}

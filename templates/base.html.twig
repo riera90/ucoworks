@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+        {% block container %}
+            <div class="ui fixed inverted menu">
+                <div class="ui container">
+                    <a href="" class="header item">
+                        <img class="logo" src="{{ asset('img/logo-white.png') }}">
+                        UCOworks
+                    </a>
+                    <a href="" class="item">Inicio</a>
+                    <a href="" class="item">Mis asignaturas</a>
+                    <a href="" class="item">Mis tareas</a>
+                    <div class="right menu">
+                        <div class="item">
+                            <a href="" class="ui inverted button">Administrar</a>
+                        </div>
+                        <div class="item">
+                            <a href="" class="ui inverted button">Cerrar sesión</a>
+                        </div>
+                        <div class="item">
+                            <a href="" class="ui inverted button">Iniciar sesión</a>
+                        </div>
+                        <div class="item">
+                            <a href="" class="ui inverted button">Crear cuenta</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui main container">
+                {# you can read and display just one flash message type... #}
+                {% for label, messages in app.flashes %}
+                    <div class="ui {{ label }} message">
+                        <ul class="list">
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+                {% block body %}{% endblock %}
+            </div>
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('build/js/app.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

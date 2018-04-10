@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Subject{% endblock %}
+
+{% block body %}
+    <h1 class="ui header">Asignatura
+        <div class="sub header">{{ subject.name }}</div>
+    </h1>
+
+    <table class="ui definition table">
+        <tbody>
+            <tr>
+                <td>Nombre</td>
+                <td>{{ subject.name }}</td>
+            </tr>
+            <tr>
+                <td>Curso</td>
+                <td>{{ subject.year }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1 class="ui header">
+        Lista de tareas
+        <div class="sub header">{{ subject }}</div>
+    </h1>
+
+    {% include "task/_table.html.twig" %}
+
+    <div class="ui buttons">
+        <a class="ui primary labeled icon button" href="{{ path('subject_enrolled') }}"><i class="left arrow icon"></i> Volver</a>
+    </div>
+{% endblock %}

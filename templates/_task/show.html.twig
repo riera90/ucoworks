@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task{% endblock %}
+
+{% block body %}
+    <h1>Task</h1>
+
+    <table class="ui definition table">
+        <tbody>
+            <tr>
+                <td>Título</td>
+                <td>{{ task.title }}</td>
+            </tr>
+            <tr>
+                <td>Descripción</td>
+                <td>{{ task.description }}</td>
+            </tr>
+            <tr>
+                <td class="collapsing">Fecha de entrega</td>
+                <td>{{ task.deadlineAt ? task.deadlineAt|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="ui primary labeled icon button" href="{{ path('subject_show', {'id': subject.id}) }}">
+        <i class="left arrow icon"></i>
+        Volver
+    </a>
+{% endblock %}
