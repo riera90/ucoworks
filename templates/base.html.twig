@@ -11,26 +11,32 @@
         {% block container %}
             <div class="ui fixed inverted menu">
                 <div class="ui container">
-                    <a href="" class="header item">
+                    <a href={{ path('homepage') }} class="header item">
                         <img class="logo" src="{{ asset('img/logo-white.png') }}">
                         UCOworks
                     </a>
-                    <a href="" class="item">Inicio</a>
+                    <a href={{ path('homepage') }} class="item">Inicio</a>
                     <a href="" class="item">Mis asignaturas</a>
                     <a href="" class="item">Mis tareas</a>
                     <div class="right menu">
+                        {% if is_granted('ROLE_ADMIN') %}
                         <div class="item">
-                            <a href="" class="ui inverted button">Administrar</a>
+                            <a href={{ path('admin') }} class="ui inverted button">Administrar</a>
+                        </div>
+                        {% endif %}
+                        {% if is_granted('ROLE_USER') %}
+                        <div class="item">
+                            <a href={{ path('logout') }} class="ui inverted button">Cerrar sesión</a>
+                        </div>
+                        {% endif %}
+                        {% if not is_granted('ROLE_USER') %}
+                        <div class="item">
+                            <a href={{ path('login') }} class="ui inverted button">Iniciar sesión</a>
                         </div>
                         <div class="item">
-                            <a href="" class="ui inverted button">Cerrar sesión</a>
+                            <a href={{ path('register') }} class="ui inverted button">Crear cuenta</a>
                         </div>
-                        <div class="item">
-                            <a href="" class="ui inverted button">Iniciar sesión</a>
-                        </div>
-                        <div class="item">
-                            <a href="" class="ui inverted button">Crear cuenta</a>
-                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
